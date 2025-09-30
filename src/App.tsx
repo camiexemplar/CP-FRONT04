@@ -2,9 +2,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense, useState, useCallback, lazy } from "react";
 import type { StudySession } from "./types/studySession";
 import Layout from "./components/Layout";
-import { NotFound } from "./pages/NotFound";
+import { NotFound } from "./pages/not-found";
 import { ErrorBoundary } from "react-error-boundary";
 import { ErrorFallback } from "./components/error-boundary";
+import { StudyDetails } from "./pages/study-details";
 
 const Home = lazy(() => import("./pages/Home").then(m => ({ default: m.Home })));
 const AddStudySession = lazy(() =>
@@ -42,6 +43,11 @@ function App() {
                   removeStudySession={removeStudySession}
                 />
               } />
+              <Route 
+              path="/studySession/:id" 
+              element={
+              <StudyDetails />} 
+              />
               <Route
                 path="add"
                 element={
